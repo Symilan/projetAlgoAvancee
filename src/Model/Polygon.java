@@ -6,7 +6,18 @@ import java.util.ArrayList;
 
 public class Polygon {
     private Integer vertexNumber;
-    private ArrayList<Dot> vertexList;
+    private ArrayList<Rope> vertexList;
+
+    public Boolean validateRope(Integer i, Integer j)
+    {
+        for(Rope rope : vertexList)
+        {
+            if ()
+            {
+
+            }
+        }
+    }
 
     @Override
     public String toString() {
@@ -22,7 +33,7 @@ public class Polygon {
         this.vertexList=new ArrayList<>();
     }
 
-    public Polygon(ArrayList<Dot> vertexList)
+    public Polygon(ArrayList<Rope> vertexList)
     {
         this.vertexNumber=vertexList.size();
         this.vertexList=vertexList;
@@ -36,11 +47,11 @@ public class Polygon {
         this.vertexNumber = vertexNumber;
     }
 
-    public ArrayList<Dot> getVertexList() {
+    public ArrayList<Rope> getVertexList() {
         return vertexList;
     }
 
-    public void setVertexList(ArrayList<Dot> vertexList) {
+    public void setVertexList(ArrayList<Rope> vertexList) {
         this.vertexList = vertexList;
     }
 }
