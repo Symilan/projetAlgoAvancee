@@ -14,6 +14,13 @@ public class Dot {
         this.id = id;
     }
 
+    public Dot(int id, int x, int y)
+    {
+     this.id = id;
+     this.x = x;
+     this.y = y;
+    }
+
     public int getX() {
         return x;
     }
