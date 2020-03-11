@@ -1,10 +1,31 @@
+package Model;
+
+import Model.Dot;
+
 import java.util.ArrayList;
 
 public class Polygon {
     private Integer vertexNumber;
     private ArrayList<Dot> vertexList;
 
-    public Polygon() {
+    @Override
+    public String toString() {
+        return "Polygon{" +
+                "vertexNumber=" + vertexNumber +
+                ", vertexList=" + vertexList +
+                '}';
+    }
+
+    public Polygon()
+    {
+        this.vertexNumber=0;
+        this.vertexList=new ArrayList<>();
+    }
+
+    public Polygon(ArrayList<Dot> vertexList)
+    {
+        this.vertexNumber=vertexList.size();
+        this.vertexList=vertexList;
     }
 
     public Integer getVertexNumber() {
