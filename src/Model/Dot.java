@@ -1,3 +1,5 @@
+package Model;
+
 public class Dot {
 
     private int id;
