@@ -12,6 +12,18 @@ public class Rope {
         this.j = j;
     }
 
+    public Boolean equals(Integer i, Integer j)
+    {
+        if((this.getI().getId()==i && this.getJ().getId()==j) || (this.getI().getId()==j && this.getJ().getId()==i))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public Dot getI() {
         return i;
     }

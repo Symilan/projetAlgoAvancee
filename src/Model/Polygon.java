@@ -1,42 +1,41 @@
 package Model;
 
-import Model.Dot;
-
 import java.util.ArrayList;
 
 public class Polygon {
     private Integer vertexNumber;
-    private ArrayList<Rope> vertexList;
+    private ArrayList<Rope> ropeList;
 
     public Boolean validateRope(Integer i, Integer j)
     {
-        for(Rope rope : vertexList)
+        for(Rope rope : ropeList)
         {
-            if ()
+            if (rope.equals(i,j))
             {
-
+                return false;
             }
         }
+        return true;
     }
 
     @Override
     public String toString() {
         return "Polygon{" +
                 "vertexNumber=" + vertexNumber +
-                ", vertexList=" + vertexList +
+                ", ropeList=" + ropeList +
                 '}';
     }
 
     public Polygon()
     {
         this.vertexNumber=0;
-        this.vertexList=new ArrayList<>();
+        this.ropeList=new ArrayList<>();
     }
 
-    public Polygon(ArrayList<Rope> vertexList)
+    public Polygon(ArrayList<Rope> ropeList)
     {
-        this.vertexNumber=vertexList.size();
-        this.vertexList=vertexList;
+        this.vertexNumber=ropeList.size();
+        this.ropeList=ropeList;
     }
 
     public Integer getVertexNumber() {
@@ -47,11 +46,11 @@ public class Polygon {
         this.vertexNumber = vertexNumber;
     }
 
-    public ArrayList<Rope> getVertexList() {
-        return vertexList;
+    public ArrayList<Rope> getropeList() {
+        return ropeList;
     }
 
-    public void setVertexList(ArrayList<Rope> vertexList) {
-        this.vertexList = vertexList;
+    public void setropeList(ArrayList<Rope> ropeList) {
+        this.ropeList = ropeList;
     }
 }
