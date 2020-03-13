@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Objects;
+
 public class Dot {
     public static Integer nbInstance = 0;
     private Integer id;
@@ -20,6 +22,20 @@ public class Dot {
         this.x = x;
         this.y = y;
         nbInstance++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dot dot = (Dot) o;
+        return Objects.equals(x, dot.x) &&
+                Objects.equals(y, dot.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     public Integer getX() {

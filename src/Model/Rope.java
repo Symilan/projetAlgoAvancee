@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.HashMap;
-
 public class Rope {
     private Dot i;
     private Dot j;
