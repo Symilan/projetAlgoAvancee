@@ -1,15 +1,32 @@
 package Model;
 
+import java.util.HashMap;
+
 public class Rope {
     private Dot i;
     private Dot j;
 
-    public Rope() {
+    public Boolean cross(Dot i, Dot j)
+    {
+        return true;
     }
+
+    public Rope() { }
 
     public Rope(Dot i, Dot j) {
         this.i = i;
         this.j = j;
+    }
+
+    public Rope(Integer i, Integer j, HashMap<Integer, Dot> dotMap)
+    {
+        this.i=dotMap.get(i);
+        this.j=dotMap.get(j);
+    }
+
+    public Boolean equals(Dot i, Dot j)
+    {
+        return this.equals(i.getId(),j.getId());
     }
 
     public Boolean equals(Integer i, Integer j)

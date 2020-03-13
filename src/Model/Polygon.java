@@ -1,21 +1,28 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Polygon {
     private Integer vertexNumber;
     private ArrayList<Rope> ropeList;
+    private HashMap<Integer, Dot> dotMap;
 
-    public Boolean validateRope(Integer i, Integer j)
+    public Boolean validateRope(Dot i, Dot j)
     {
         for(Rope rope : ropeList)
         {
-            if (rope.equals(i,j))
+            if (rope.equals(i,j) || rope.cross(i,j))
             {
                 return false;
             }
         }
         return true;
+    }
+
+    public void addDot(Integer x, Integer y)
+    {
+
     }
 
     @Override

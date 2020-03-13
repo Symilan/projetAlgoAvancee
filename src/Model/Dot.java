@@ -1,44 +1,45 @@
 package Model;
 
 public class Dot {
+    public static Integer nbInstance = 0;
+    private Integer id;
+    private Integer x;
+    private Integer y;
 
-    private int id;
-    private int x;
-    private int y;
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Dot(int id, int x, int y)
+    public Dot(Integer x, Integer y)
     {
-     this.id = id;
-     this.x = x;
-     this.y = y;
+        this.id=nbInstance;
+        this.x = x;
+        this.y = y;
+        nbInstance++;
     }
 
-    public int getX() {
+    public Integer getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(Integer x) {
         this.x = x;
     }
 
-    public int getY() {
+    public Integer getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(Integer y) {
         this.y = y;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Point" + id + '(' + x + ';' + y + ')';
     }
 }
