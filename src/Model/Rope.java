@@ -18,12 +18,6 @@ public class Rope {
         this.j = j;
     }
 
-    public Rope(Integer i, Integer j, HashMap<Integer, Dot> dotMap)
-    {
-        this.i=dotMap.get(i);
-        this.j=dotMap.get(j);
-    }
-
     public Boolean equals(Dot i, Dot j)
     {
         return this.equals(i.getId(),j.getId());
