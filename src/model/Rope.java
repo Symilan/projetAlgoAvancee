@@ -105,9 +105,8 @@ public class Rope {
         Integer iY = i.getY();
         Integer jX = j.getX();
         Integer jY = j.getY();
-        Integer resSquare = ((iX - iY) ^ 2) + ((jX - jY) ^ 2);
-        System.out.println();
-        return Double.valueOf(0);
+        Integer resSquare = (iX - jX)*(iX - jX) + (iY - jY)*(iY - jY);
+        return Math.sqrt(resSquare);
     }
 
     public Dot getI() {
