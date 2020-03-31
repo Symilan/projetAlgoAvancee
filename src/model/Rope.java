@@ -1,8 +1,6 @@
 package model;
 
 public class Rope {
-    public static Integer nbInstance = 0;
-    private Integer id;
     private Dot i;
     private Dot j;
 
@@ -71,13 +69,9 @@ public class Rope {
     }
 
     public Rope() {
-        this.id=nbInstance;
-        nbInstance++;
     }
 
     public Rope(Dot i, Dot j) {
-        this.id=nbInstance;
-        nbInstance++;
         this.i = i;
         this.j = j;
     }
@@ -123,12 +117,5 @@ public class Rope {
 
     public void setJ(Dot j) {
         this.j = j;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
     }
 }
