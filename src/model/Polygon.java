@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,14 +6,15 @@ import java.util.Objects;
 
 public class Polygon {
     private Integer vertexNumber;
-    private ArrayList<Rope> ropeList;
+    private HashMap<Integer, Rope> ropeMap;
     private HashMap<Integer, Dot> dotMap;
 
     public void addRope(Dot i, Dot j)
     {
         if(validateRope(i,j))
         {
-            ropeList.add(new Rope(i,j));
+            Rope rope = new Rope(i,j);
+            ropeMap.put(rope.getId(),rope);
         }
     }
 
@@ -21,18 +22,20 @@ public class Polygon {
     {
         Dot dotI=dotMap.get(i);
         Dot dotJ=dotMap.get(j);
+        Rope rope = new Rope(dotI,dotJ);
         if(validateRope(dotI,dotJ))
         {
-            ropeList.add(new Rope(dotI, dotJ));
+            ropeMap.put(rope.getId(),rope);
         }
     }
 
     public Boolean validateRope(Dot i, Dot j)
     {
-        for(Rope rope : ropeList)
+        for(Rope rope : ropeMap.values())
         {
             if (rope.equals(i,j) || rope.cross(i,j))
             {
+                Rope.nbInstance--;
                 return false;
             }
         }
@@ -58,7 +61,7 @@ public class Polygon {
     public String toString() {
         return "Polygon{" +
                 "vertexNumber=" + vertexNumber +
-                ", ropeList=" + ropeList +
+                ", ropeList=" + ropeMap +
                 ", dotMap=" + dotMap +
                 '}';
     }
@@ -66,7 +69,7 @@ public class Polygon {
     public Polygon()
     {
         this.vertexNumber=0;
-        this.ropeList=new ArrayList<>();
+        this.ropeMap =new HashMap<>();
         this.dotMap=new HashMap<>();
     }
 
@@ -74,7 +77,7 @@ public class Polygon {
     {
         this.vertexNumber=dotMap.size();
         this.dotMap=dotMap;
-        this.ropeList=new ArrayList<>();
+        this.ropeMap =new HashMap<>();
     }
 
     @Override
@@ -83,13 +86,13 @@ public class Polygon {
         if (o == null || getClass() != o.getClass()) return false;
         Polygon polygon = (Polygon) o;
         return Objects.equals(vertexNumber, polygon.vertexNumber) &&
-                Objects.equals(ropeList, polygon.ropeList) &&
+                Objects.equals(ropeMap, polygon.ropeMap) &&
                 Objects.equals(dotMap, polygon.dotMap);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(vertexNumber, ropeList, dotMap);
+        return Objects.hash(vertexNumber, ropeMap, dotMap);
     }
 
     public Integer getVertexNumber() {
@@ -100,20 +103,12 @@ public class Polygon {
         this.vertexNumber = vertexNumber;
     }
 
-    public ArrayList<Rope> getropeList() {
-        return ropeList;
+    public HashMap<Integer, Rope> getRopeMap() {
+        return ropeMap;
     }
 
-    public void setropeList(ArrayList<Rope> ropeList) {
-        this.ropeList = ropeList;
-    }
-
-    public ArrayList<Rope> getRopeList() {
-        return ropeList;
-    }
-
-    public void setRopeList(ArrayList<Rope> ropeList) {
-        this.ropeList = ropeList;
+    public void setRopeMap(HashMap<Integer, Rope> ropeMap) {
+        this.ropeMap = ropeMap;
     }
 
     public HashMap<Integer, Dot> getDotMap() {

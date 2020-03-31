@@ -1,6 +1,8 @@
-package Model;
+package model;
 
 public class Rope {
+    public static Integer nbInstance = 0;
+    private Integer id;
     private Dot i;
     private Dot j;
 
@@ -9,9 +11,14 @@ public class Rope {
         return true;
     }
 
-    public Rope() { }
+    public Rope() {
+        this.id=nbInstance;
+        nbInstance++;
+    }
 
     public Rope(Dot i, Dot j) {
+        this.id=nbInstance;
+        nbInstance++;
         this.i = i;
         this.j = j;
     }
@@ -33,6 +40,17 @@ public class Rope {
         }
     }
 
+    public Double lenght()
+    {
+        Integer iX = i.getX();
+        Integer iY = i.getY();
+        Integer jX = j.getX();
+        Integer jY = j.getY();
+        Integer resSquare = ((iX - iY) ^ 2) + ((jX - jY) ^ 2);
+        System.out.println();
+        return Double.valueOf(0);
+    }
+
     public Dot getI() {
         return i;
     }
@@ -47,5 +65,12 @@ public class Rope {
 
     public void setJ(Dot j) {
         this.j = j;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
