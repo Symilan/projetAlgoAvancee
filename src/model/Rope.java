@@ -18,12 +18,12 @@ public class Rope {
         //coef de la droite de la rope qu'on test
         double a1 = 0;
         double b1 = 0;
-        boolean parrallele = false;
+        boolean parallel = false;
         if(i1.getX() == j1.getX()){
             // la rope que l'on test est verticale et donc n'a pas d'équation
             if(i.getX() == j.getX()){
                 // les deux droites sont verticales et donc parrallèles
-                parrallele = true;
+                parallel = true;
             }
             a = (i.getY() - j.getY()) / (i.getX() - j.getX());
             b = i.getY() - (a * i.getX());
@@ -44,7 +44,7 @@ public class Rope {
                 b = i.getY() - (a * i.getX());
                 if(a == a1){
                     // les deux droites ont le même coef directeur, elles sont donc parrallèles
-                    parrallele = true ;
+                    parallel = true ;
                 }
                 else {
                     // Aucune des droites est verticale ni parrallèle on calcule donc xc avec a*xc+b = a1*xc+b1
@@ -59,7 +59,7 @@ public class Rope {
         boolean equalsj1 = (j1.getX() == xc && j1.getY() == yc);
         //On verifie si xc est egale à un point d'une des rope ou si les rope sont parrallèle
         // si oui xc est une extrèmité du polygone ou les rope sont parrallèles alors les ropes ne se croisent
-        if(!equalsi  && !equalsi1 && !equalsj && !equalsj1 && !parrallele) {
+        if(!equalsi  && !equalsi1 && !equalsj && !equalsj1 && !parallel) {
             if (xc <= Double.max(j.getX(), i.getX()) && xc >= Double.min(j.getX(), i.getX())) {
                 if (yc <= Double.max(i.getY(), j.getY()) && yc >= Double.min(i.getY(), j.getY())) {
                     bool = true;
