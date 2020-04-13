@@ -132,4 +132,42 @@ public class Polygon {
 
         return res;
     }
+
+    public double[] getAllX()
+    {
+        ArrayList<Dot> dotList = new ArrayList<>(getDotMap().values());
+        double[] res = new double[dotList.size()];
+        for (int i=0 ; i<dotList.size() ; i++)
+        {
+            res[i]=dotList.get(i).getX();
+        }
+        return res;
+    }
+
+    public double[] getAllY()
+    {
+        ArrayList<Dot> dotList = new ArrayList<>(getDotMap().values());
+        double[] res = new double[dotList.size()];
+        for (int i=0 ; i<dotList.size() ; i++)
+        {
+            res[i]=dotList.get(i).getY();
+        }
+        return res;
+    }
+
+    public ArrayList<double[][]> ropesToList()
+    {
+        ArrayList<double[][]> res = new ArrayList<>();
+        for (Rope rope : ropeList)
+        {
+            double[] tempY = new double[2];
+            double[] tempX = new double[2];
+            tempX[0] = rope.getI().getX();
+            tempX[1] = rope.getJ().getX();
+            tempY[0] = rope.getI().getY();
+            tempY[1] = rope.getJ().getY();
+            res.add(new double[][]{tempX, tempY});
+        }
+        return res;
+    }
 }
