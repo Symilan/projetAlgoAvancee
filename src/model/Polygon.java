@@ -117,4 +117,19 @@ public class Polygon {
     public void setDotMap(HashMap<Integer, Dot> dotMap) {
         this.dotMap = dotMap;
     }
+
+    public double[] toList()
+    {
+        ArrayList<Dot> dotList = new ArrayList<>(dotMap.values());
+
+        double[] res = new double[dotList.size()*2];
+
+        for (int i=0 ; i<dotList.size() ; i++)
+        {
+            res[2*i]  =dotList.get(i).getX();
+            res[2*i+1]=dotList.get(i).getY();
+        }
+
+        return res;
+    }
 }
