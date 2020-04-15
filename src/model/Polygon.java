@@ -8,6 +8,7 @@ public class Polygon {
     private Integer vertexNumber;
     private ArrayList<Rope> ropeList;
     private HashMap<Integer, Dot> dotMap;
+    private Double Minlength;
 
     public void addRope(Dot i, Dot j)
     {
@@ -71,6 +72,7 @@ public class Polygon {
         this.vertexNumber=0;
         this.ropeList =new ArrayList<>();
         this.dotMap=new HashMap<>();
+        this.Minlength = 0.0 ;
     }
 
     public Polygon(HashMap<Integer,Dot> dotMap)
@@ -78,6 +80,7 @@ public class Polygon {
         this.vertexNumber=dotMap.size();
         this.dotMap=dotMap;
         this.ropeList =new ArrayList<>();
+        this.Minlength = 0.0 ;
     }
 
     @Override
@@ -155,23 +158,42 @@ public class Polygon {
         }
         return res;
     }
-/*
-    public void triangulationMin (ArrayList<Rope> C, int si, double currentLength, double minLength){
+
+    public void triangulationMin (){
+        triangulationMinAux(new ArrayList<Rope>(),0,0);
+    }
+    public void triangulationMinAux (ArrayList<Rope> C, int si, double currentLength){
         Rope newRope;
         Double addition;
+        boolean end = true;
         ArrayList<Rope> newC = C;
+        Polygon p = new Polygon(this.dotMap);
+        p.setRopeList(C);
         for(int i =0; i<vertexNumber; i++){
-            if(this.validateRope(dotMap.get(si),dotMap.get(i))){
+
+            if(p.validateRope(dotMap.get(si),dotMap.get(i))){
+                end = false;
                 newRope = new Rope(dotMap.get(si),dotMap.get(i));
-                addition = newRope.length();
+                addition = newRope.length() + currentLength ;
                 newC.add(newRope);
-                triangulationMin(newC,2, min);
+                if((addition <= this.Minlength) || (this.Minlength == 0) ) {
+                    System.out.println(newC.toString());
+                    triangulationMinAux(newC, i, addition);
+                }
                 newC = C;
+                addition = currentLength;
             }
+        }
+        if(end) {
+            if((currentLength <= this.Minlength) || (this.Minlength == 0)){
+                this.Minlength = currentLength;
+                this.ropeList = C;
+            }
+
         }
 
     }
-}*/
+
 
     public ArrayList<double[][]> ropesToList()
     {
@@ -203,4 +225,7 @@ public class Polygon {
     {
         return length(getDotMap().get(i),getDotMap().get(j));
     }
+
+
+
 }

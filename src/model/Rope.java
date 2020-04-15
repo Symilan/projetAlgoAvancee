@@ -121,4 +121,12 @@ public class Rope {
     public void setJ(Dot j) {
         this.j = j;
     }
+
+    @Override
+    public String toString() {
+        return "Rope{" +
+                "i=" + i +
+                ", j=" + j +
+                '}';
+    }
 }
