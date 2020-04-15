@@ -1,4 +1,4 @@
-package visual;
+/*package visual;
 
 import model.Polygon;
 import org.jfree.chart.ChartFactory;
@@ -74,3 +74,4 @@ public class Drawing extends ApplicationFrame {
         drawing.setVisible(true);
     }
 }
+*/

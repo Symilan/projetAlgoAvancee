@@ -23,10 +23,12 @@ public class Rope {
                 // les deux droites sont verticales et donc parrallèles
                 parallel = true;
             }
-            a = (i.getY() - j.getY()) / (i.getX() - j.getX());
-            b = i.getY() - (a * i.getX());
-            xc = i1.getX();
-            yc = a*xc + b ;
+            else {
+                a = (i.getY() - j.getY()) / (i.getX() - j.getX());
+                b = i.getY() - (a * i.getX());
+                xc = i1.getX();
+                yc = a * xc + b;
+            }
 
         }
         else {

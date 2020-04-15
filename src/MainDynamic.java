@@ -1,5 +1,5 @@
 import model.Polygon;
-import visual.Drawing;
+/*import visual.Drawing;*/
 
 
 public class MainDynamic {
@@ -31,7 +31,7 @@ public class MainDynamic {
 
         if (n<3)
         {
-            System.out.println("Un polygome soit avoir au moins 3 points.");
+            System.out.println("Un polygone doit avoir au moins 3 points.");
             System.exit(1);
         }
 
@@ -72,6 +72,6 @@ public class MainDynamic {
                 }
             }
         }
-        Drawing.draw(polygon);
+       /* Drawing.draw(polygon);*/
     }
 }
