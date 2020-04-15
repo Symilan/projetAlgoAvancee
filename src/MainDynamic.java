@@ -5,8 +5,10 @@ import visual.Drawing;
 public class MainDynamic {
     public static void main(String[] args) {
 
-        double MAX = 1000.0;
+        //On définit une constante qui représente une longueur qui ne pourra pas être atteinte afin de faciliter les calculs
+        final double MAX = Double.MAX_VALUE;
 
+        //On crée le polygone que l'on va étudier et récupère son nombre de sommets
         Polygon polygon = new Polygon();
         try {
             polygon.addDot(0,0);
@@ -19,8 +21,11 @@ public class MainDynamic {
         }
         int n = polygon.getVertexNumber();
 
+        //tableCost[i][j] contiendra le poid d'une triangulation entre i et j (c'est à dire la longueure de ses côtés)
         double[][] tableCost = new double[n][n];
+        //tableTrig[i][j] contientra k si le triangle k,i,j est dans la triangulation optimale
         int[][] tableTrig = new int[n][n];
+
         for (int i = 0 ; i<n ; i++)
         {
             for (int j = 0 ; j < n ; j++)
@@ -35,6 +40,28 @@ public class MainDynamic {
             System.exit(1);
         }
 
+        /*
+        for (int i = 0 ; i < n ; i++)
+        {
+            tableCost[i][i]=0;
+        }
+        for (int l = 1 ; l<n ; l++)
+        {
+            for (int i = 0 ; i<n-l ; i++)
+            {
+                int j = i + l -1;
+                tableCost[i][j]=MAX;
+                for (int k = i ; k < j ; k++)
+                {
+                    double q = tableCost[i][k] + tableCost[k+1][j] + polygon.length(i,k) + polygon.length(k,j) + polygon.length(i,j);
+                    if (tableCost[i][j] > q)
+                    {
+                        tableCost[i][j] = q;
+                    }
+                }
+            }
+        }
+        */
         for (int diff=0 ; diff<n ; diff++)
         {
             for (int startDot = 0 ; startDot+diff < n ; startDot++)
@@ -59,17 +86,25 @@ public class MainDynamic {
                 }
             }
         }
-        System.out.println(tableCost[0][n-1]);
+        double totalLength = tableCost[0][n-1];
+        double perim = polygon.length(n-1,0);
+        for (int i=0 ; i<n-1 ; i++)
+        {
+            perim+=polygon.length(i,i+1);
+        }
+        double res = totalLength-perim;
+        res/=2;
+        System.out.println("Longueur de la triangulation minimale : "+res);
         for (int i = 0 ; i<n ; i++)
         {
             for (int j = 0; j < n; j++)
             {
-                if (tableTrig[i][j] != -1)
-                {
-                    polygon.addRope(i,tableTrig[i][j]);
+                    System.out.print("i = "+i);
+                    System.out.print(", j = "+j);
+                    System.out.println(", t = "+tableCost[i][j]);
+                    /*polygon.addRope(i,tableTrig[i][j]);
                     polygon.addRope(j,tableTrig[i][j]);
-                    polygon.addRope(i,j);
-                }
+                    polygon.addRope(i,j);*/
             }
         }
        Drawing.draw(polygon);
