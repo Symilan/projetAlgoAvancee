@@ -53,7 +53,6 @@ public class Polygon {
             Dot.nbInstance--;
             throw new Exception("On ne peut pas placer deux dots au même endroit.");
         }
-        vertexNumber++;
         dotMap.put(dot.getId(),dot);
     }
 
@@ -155,6 +154,23 @@ public class Polygon {
         }
         return res;
     }
+/*
+    public void triangulationMin (ArrayList<Rope> C, int si, double currentLength, double minLength){
+        Rope newRope;
+        Double addition;
+        ArrayList<Rope> newC = C;
+        for(int i =0; i<vertexNumber; i++){
+            if(this.validateRope(dotMap.get(si),dotMap.get(i))){
+                newRope = new Rope(dotMap.get(si),dotMap.get(i));
+                addition = newRope.length();
+                newC.add(newRope);
+                triangulationMin(newC,2, min);
+                newC = C;
+            }
+        }
+
+    }
+}*/
 
     public ArrayList<double[][]> ropesToList()
     {

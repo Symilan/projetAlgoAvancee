@@ -93,7 +93,7 @@ public class Rope {
         }
     }
 
-    public Double lenght()
+    public Double length()
     {
         Integer iX = i.getX();
         Integer iY = i.getY();
