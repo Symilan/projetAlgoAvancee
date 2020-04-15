@@ -53,6 +53,7 @@ public class Polygon {
             Dot.nbInstance--;
             throw new Exception("On ne peut pas placer deux dots au même endroit.");
         }
+        vertexNumber++;
         dotMap.put(dot.getId(),dot);
     }
 
@@ -169,5 +170,20 @@ public class Polygon {
             res.add(new double[][]{tempX, tempY});
         }
         return res;
+    }
+
+    public double length(Dot i, Dot j)
+    {
+        Integer iX = i.getX();
+        Integer iY = i.getY();
+        Integer jX = j.getX();
+        Integer jY = j.getY();
+        Integer resSquare = (iX - jX)*(iX - jX) + (iY - jY)*(iY - jY);
+        return Math.sqrt(resSquare);
+    }
+
+    public double length(int i, int j)
+    {
+        return length(getDotMap().get(i),getDotMap().get(j));
     }
 }
