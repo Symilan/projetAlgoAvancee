@@ -1,5 +1,5 @@
 import model.Polygon;
-/*import visual.Drawing;*/
+import visual.Drawing;
 
 
 public class MainDynamic {
@@ -9,11 +9,11 @@ public class MainDynamic {
 
         Polygon polygon = new Polygon();
         try {
-            polygon.addDot(4,1);
-            polygon.addDot(2,3);
-            polygon.addDot(3,5);
-            polygon.addDot(5,4);
-            polygon.addDot(6,2);
+            polygon.addDot(0,0);
+            polygon.addDot(1,0);
+            polygon.addDot(2,1);
+            polygon.addDot(1,2);
+            polygon.addDot(0,2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,6 +72,6 @@ public class MainDynamic {
                 }
             }
         }
-       /* Drawing.draw(polygon);*/
+       Drawing.draw(polygon);
     }
 }

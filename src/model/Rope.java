@@ -3,6 +3,7 @@ package model;
 public class Rope {
     private Dot i;
     private Dot j;
+    private final double EPSILON = 0.01;
 
     public Boolean cross(Dot i1, Dot j1)
     {
@@ -19,7 +20,7 @@ public class Rope {
         boolean parallel = false;
         if(i1.getX() == j1.getX()){
             // la rope que l'on test est verticale et donc n'a pas d'équation
-            if(i.getX() == j.getX()){
+            if(Math.abs(i.getX() - j.getX())<EPSILON){
                 // les deux droites sont verticales et donc parrallèles
                 parallel = true;
             }

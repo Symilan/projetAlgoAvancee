@@ -53,6 +53,7 @@ public class Polygon {
             Dot.nbInstance--;
             throw new Exception("On ne peut pas placer deux dots au même endroit.");
         }
+        vertexNumber++;
         dotMap.put(dot.getId(),dot);
     }
 
