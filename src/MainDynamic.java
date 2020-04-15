@@ -1,4 +1,5 @@
 import model.Polygon;
+import visual.Drawing;
 
 
 public class MainDynamic {
@@ -8,17 +9,25 @@ public class MainDynamic {
 
         Polygon polygon = new Polygon();
         try {
-            polygon.addDot(0,0);
-            polygon.addDot(1,0);
-            polygon.addDot(2,1);
-            polygon.addDot(1,2);
-            polygon.addDot(0,2);
+            polygon.addDot(4,1);
+            polygon.addDot(2,3);
+            polygon.addDot(3,5);
+            polygon.addDot(5,4);
+            polygon.addDot(6,2);
         } catch (Exception e) {
             e.printStackTrace();
         }
         int n = polygon.getVertexNumber();
 
-        double[][] table = new double[n][n];
+        double[][] tableCost = new double[n][n];
+        int[][] tableTrig = new int[n][n];
+        for (int i = 0 ; i<n ; i++)
+        {
+            for (int j = 0 ; j < n ; j++)
+            {
+                tableTrig[i][j] = -1;
+            }
+        }
 
         if (n<3)
         {
@@ -33,23 +42,36 @@ public class MainDynamic {
                 int endDot=startDot+diff;
                 if (endDot < startDot + 2)
                 {
-                    table[startDot][endDot] = 0.0;
+                    tableCost[startDot][endDot] = 0.0;
                 }
                 else
                 {
-                    table[startDot][endDot] = MAX;
+                    tableCost[startDot][endDot] = MAX;
                     for (int interDot = startDot+1 ; interDot<endDot ; interDot++)
                     {
-                        double cost = table[startDot][interDot] + table[interDot][endDot] + polygon.length(startDot,endDot) + polygon.length(startDot, interDot) +polygon.length(interDot,endDot);
-                        if (table[startDot][endDot]>cost)
+                        double cost = tableCost[startDot][interDot] + tableCost[interDot][endDot] + polygon.length(startDot,endDot) + polygon.length(startDot, interDot) +polygon.length(interDot,endDot);
+                        if (tableCost[startDot][endDot]>cost)
                         {
-                            table[startDot][endDot] = cost;
+                            tableCost[startDot][endDot] = cost;
+                            tableTrig[startDot][endDot] = interDot;
                         }
                     }
                 }
-
             }
         }
-        System.out.println(table[0][n-1]);
+        System.out.println(tableCost[0][n-1]);
+        for (int i = 0 ; i<n ; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (tableTrig[i][j] != -1)
+                {
+                    polygon.addRope(i,tableTrig[i][j]);
+                    polygon.addRope(j,tableTrig[i][j]);
+                    polygon.addRope(i,j);
+                }
+            }
+        }
+        Drawing.draw(polygon);
     }
 }

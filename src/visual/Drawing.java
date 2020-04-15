@@ -35,7 +35,6 @@ public class Drawing extends ApplicationFrame {
     {
         DefaultXYDataset data = new DefaultXYDataset();
         ArrayList<double[][]> list = polygon.ropesToList();
-        System.out.println(list);
         for (double[][] item : list)
         {
             data.addSeries(item.toString(),item);
