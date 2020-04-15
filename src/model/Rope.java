@@ -26,7 +26,6 @@ public class Rope {
             }
             else {
                 a = (i.getY() - j.getY())*1.0 / (i.getX() - j.getX())*1.0;
-                System.out.println(a);
                 b = i.getY() - (a * (i.getX()*1.0));
                 xc = i1.getX();
                 yc = a * xc + b;
@@ -55,8 +54,6 @@ public class Rope {
                 }
             }
         }
-        System.out.println(yc);
-        System.out.println(xc);
         boolean equalsi = (i.getX() == xc && i.getY() == yc);
         boolean equalsj = (j.getX() == xc && j.getY() == yc);
         boolean equalsi1 = (i1.getX() == xc && i1.getY() == yc);
