@@ -170,14 +170,13 @@ public class Polygon {
         Polygon p = new Polygon(this.dotMap);
         p.setRopeList(C);
         for(int i =0; i<vertexNumber; i++){
-
             if(p.validateRope(dotMap.get(si),dotMap.get(i))){
                 end = false;
                 newRope = new Rope(dotMap.get(si),dotMap.get(i));
                 addition = newRope.length() + currentLength ;
                 newC.add(newRope);
                 if((addition <= this.Minlength) || (this.Minlength == 0) ) {
-                    System.out.println(newC.toString());
+                    //System.out.println(newC.toString());
                     triangulationMinAux(newC, i, addition);
                 }
                 newC = C;
