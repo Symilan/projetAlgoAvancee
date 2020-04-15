@@ -20,29 +20,30 @@ public class Rope {
         boolean parallel = false;
         if(i1.getX() == j1.getX()){
             // la rope que l'on test est verticale et donc n'a pas d'équation
-            if(Math.abs(i.getX() - j.getX())<EPSILON){
+            if(i.getX() == j.getX()){
                 // les deux droites sont verticales et donc parrallèles
                 parallel = true;
             }
             else {
-                a = (i.getY() - j.getY()) / (i.getX() - j.getX());
-                b = i.getY() - (a * i.getX());
+                a = (i.getY() - j.getY())*1.0 / (i.getX() - j.getX())*1.0;
+                System.out.println(a);
+                b = i.getY() - (a * (i.getX()*1.0));
                 xc = i1.getX();
                 yc = a * xc + b;
             }
 
         }
         else {
-            a1 = (i1.getY() - j1.getY()) / (i1.getX() - j1.getX());
-            b1 = i1.getY() - (a1 * i1.getX());
+            a1 = (i1.getY() - j1.getY())*1.0 / (i1.getX() - j1.getX())*1.0;
+            b1 = i1.getY() - (a1 * (i1.getX()*1.0));
             if(i.getX() == j.getX()){
                 // la rope sur laquelle on aplique cross est verticale et donc n'a pas d'équation
                 xc = i.getX();
                 yc = a1*xc + b1 ;
             }
             else {
-                a = (i.getY() - j.getY()) / (i.getX() - j.getX());
-                b = i.getY() - (a * i.getX());
+                a = (i.getY() - j.getY())*1.0 / (i.getX() - j.getX())*1.0;
+                b = i.getY() - (a * (i.getX()*1.0));
                 if(a == a1){
                     // les deux droites ont le même coef directeur, elles sont donc parrallèles
                     parallel = true ;
@@ -54,6 +55,8 @@ public class Rope {
                 }
             }
         }
+        System.out.println(yc);
+        System.out.println(xc);
         boolean equalsi = (i.getX() == xc && i.getY() == yc);
         boolean equalsj = (j.getX() == xc && j.getY() == yc);
         boolean equalsi1 = (i1.getX() == xc && i1.getY() == yc);
