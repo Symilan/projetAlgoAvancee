@@ -23,9 +23,8 @@ public class MainDynamic {
 
         //tableCost[i][j] contiendra le poid d'une triangulation entre i et j (c'est à dire la longueure de ses côtés)
         double[][] tableCost = new double[n][n];
-        //tableTrig[i][j] contientra k si le triangle k,i,j est dans la triangulation optimale
+        //tableTrig[i][j] contientra k si le triangle k,i,j est dans la triangulation optimale, -1 sinon
         int[][] tableTrig = new int[n][n];
-
         for (int i = 0 ; i<n ; i++)
         {
             for (int j = 0 ; j < n ; j++)
@@ -34,34 +33,14 @@ public class MainDynamic {
             }
         }
 
+        //Test de cas limite
         if (n<3)
         {
             System.out.println("Un polygone doit avoir au moins 3 points.");
             System.exit(1);
         }
 
-        /*
-        for (int i = 0 ; i < n ; i++)
-        {
-            tableCost[i][i]=0;
-        }
-        for (int l = 1 ; l<n ; l++)
-        {
-            for (int i = 0 ; i<n-l ; i++)
-            {
-                int j = i + l -1;
-                tableCost[i][j]=MAX;
-                for (int k = i ; k < j ; k++)
-                {
-                    double q = tableCost[i][k] + tableCost[k+1][j] + polygon.length(i,k) + polygon.length(k,j) + polygon.length(i,j);
-                    if (tableCost[i][j] > q)
-                    {
-                        tableCost[i][j] = q;
-                    }
-                }
-            }
-        }
-        */
+
         for (int diff=0 ; diff<n ; diff++)
         {
             for (int startDot = 0 ; startDot+diff < n ; startDot++)
