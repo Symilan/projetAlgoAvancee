@@ -206,6 +206,10 @@ public class Polygon {
         }
     }
 
+    public int nextSummit(Polygon polygon, Integer i)
+    {
+        return (i+1)%vertexNumber;
+    }
 
     public ArrayList<double[][]> ropesToList()
     {

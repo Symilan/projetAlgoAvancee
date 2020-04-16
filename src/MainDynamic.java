@@ -40,12 +40,14 @@ public class MainDynamic {
             System.exit(1);
         }
 
-
+        //début de la fonction dynamique, on fait une boucle if gérant l'écart entre les points startDot et endDot qui vont parcourir le polygone
         for (int diff=0 ; diff<n ; diff++)
         {
+            //création du point startDot qui va parcourir le triangle
             for (int startDot = 0 ; startDot+diff < n ; startDot++)
             {
                 int endDot=startDot+diff;
+                //condition d'arrêt
                 if (endDot < startDot + 2)
                 {
                     tableCost[startDot][endDot] = 0.0;
@@ -53,18 +55,24 @@ public class MainDynamic {
                 else
                 {
                     tableCost[startDot][endDot] = MAX;
+                    int choosenSummit=-1;
+                    //tentative de création d'un triangle avec pour base le segment [startDot,endDot] et comme sommet interDot, qui va parcourir tous les sommets du polygone entre startDot et endDot exclus
                     for (int interDot = startDot+1 ; interDot<endDot ; interDot++)
                     {
+                        //comparaison du poid du triangle tracé
                         double cost = tableCost[startDot][interDot] + tableCost[interDot][endDot] + polygon.length(startDot,endDot) + polygon.length(startDot, interDot) +polygon.length(interDot,endDot);
                         if (tableCost[startDot][endDot]>cost)
                         {
                             tableCost[startDot][endDot] = cost;
-                            tableTrig[startDot][endDot] = interDot;
+                            System.out.println("Assignation");
+                            choosenSummit=interDot;
                         }
                     }
+                    tableTrig[startDot][endDot] = choosenSummit;
                 }
             }
         }
+        //récupération de la sommet de la longueur des côtés des triangles pour en extraire le bon résultat (la longueur totale des cordes)
         double totalLength = tableCost[0][n-1];
         double perim = polygon.length(n-1,0);
         for (int i=0 ; i<n-1 ; i++)
@@ -80,12 +88,13 @@ public class MainDynamic {
             {
                     System.out.print("i = "+i);
                     System.out.print(", j = "+j);
-                    System.out.println(", t = "+tableCost[i][j]);
+                    System.out.println(", t = "+tableTrig[i][j]);
                     /*polygon.addRope(i,tableTrig[i][j]);
                     polygon.addRope(j,tableTrig[i][j]);
                     polygon.addRope(i,j);*/
             }
         }
+        //Dessin du polygone
        Drawing.draw(polygon);
     }
 }
