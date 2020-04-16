@@ -166,41 +166,44 @@ public class Polygon {
         triangulationMinAux(new ArrayList<>(),0,0,0);
     }
     public void triangulationMinAux (ArrayList<Rope> C, int si, double currentLength,int numberRope){
-        System.out.println(C.toString());
+        //newRope prend la valeur de la nouvelle corde que l'on veut rajouter qui est valide
         Rope newRope;
+        //addition prend la nouvelle valeur de la longueur en ajoutant celle de newRope
         double addition;
+        //newC est la nouvelle liste de corde que l'on obtient avec newRope
         ArrayList<Rope> newC = new ArrayList<>(C);
+        //p est le polygon actuel sans nouvelle corde
         Polygon p = new Polygon(this.dotMap);
         p.setRopeList(C);
         p.setVertexNumber(this.vertexNumber);
-        if(si == dotMap.size()  && !C.isEmpty()) {
+        //Condition d'arrêt : si on atteint le dernier sommet à tester
+        if(si == dotMap.size()) {
+            //On remplace cette triangulation par celle trouvé avant si elle est de longueur plus petite
+            //ou si c'est la première trouvé ( la longueur min est de 0 si c'est la première)
             if (((currentLength <= this.Minlength) || (this.Minlength == 0)) && (numberRope == (vertexNumber-3) )) {
                 this.Minlength = currentLength;
                 this.ropeList = C;
-                System.out.println(currentLength);
-                System.out.println(C.toString());
-                System.out.println(numberRope);
             }
         }
         else {
+            //On test une corde pour chaque sommet du polygon à partir de si
             for (int i = 0; i < vertexNumber; i++) {
                 if (p.validateRope(si, i)) {
                     newRope = new Rope(dotMap.get(si), dotMap.get(i));
                     addition = newRope.length() + currentLength;
                     newC.add(newRope);
-                    System.out.println(newC.toString() + ":" + addition);
+                    //condition d'élagage: si la longueur des cordes dépasse déjà celui trouvé on arrête
                     if ((addition <= this.Minlength) || (this.Minlength == 0)) {
+                        //On passe au prochains sommet avec newRope ajouté à C
                         triangulationMinAux(newC,(si+1), addition,(numberRope+1));
                     }
+                    //On réinitialise newC
                     newC = new ArrayList<>(C);
                 }
             }
+            //On passe au prochains sommet sans créer de corde
             triangulationMinAux(C, (si + 1), currentLength, numberRope);
-
-
         }
-
-
     }
 
 
