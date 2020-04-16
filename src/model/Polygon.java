@@ -44,7 +44,8 @@ public class Polygon {
 
     public Boolean validateRope(Integer i, Integer j)
     {
-        return validateRope(dotMap.get(i),dotMap.get(j));
+        return validateRope(dotMap.get(i),dotMap.get(j)) && i != ((j+1)%vertexNumber) && i!=j && i!=((j-1)%vertexNumber)
+               && j != ((i+1)%vertexNumber) && j!=((i-1)%vertexNumber);
     }
 
     public void addDot(Integer x, Integer y) throws Exception {
@@ -160,36 +161,45 @@ public class Polygon {
     }
 
     public void triangulationMin (){
-        triangulationMinAux(new ArrayList<Rope>(),0,0);
+        this.ropeList = new ArrayList<>();
+        this.Minlength = 0.0;
+        triangulationMinAux(new ArrayList<>(),0,0,0);
     }
-    public void triangulationMinAux (ArrayList<Rope> C, int si, double currentLength){
+    public void triangulationMinAux (ArrayList<Rope> C, int si, double currentLength,int numberRope){
+        System.out.println(C.toString());
         Rope newRope;
-        Double addition;
-        boolean end = true;
-        ArrayList<Rope> newC = C;
+        double addition;
+        ArrayList<Rope> newC = new ArrayList<>(C);
         Polygon p = new Polygon(this.dotMap);
         p.setRopeList(C);
-        for(int i =0; i<vertexNumber; i++){
-            if(p.validateRope(dotMap.get(si),dotMap.get(i))){
-                end = false;
-                newRope = new Rope(dotMap.get(si),dotMap.get(i));
-                addition = newRope.length() + currentLength ;
-                newC.add(newRope);
-                if((addition <= this.Minlength) || (this.Minlength == 0) ) {
-                    //System.out.println(newC.toString());
-                    triangulationMinAux(newC, i, addition);
-                }
-                newC = C;
-                addition = currentLength;
-            }
-        }
-        if(end) {
-            if((currentLength <= this.Minlength) || (this.Minlength == 0)){
+        p.setVertexNumber(this.vertexNumber);
+        if(si == dotMap.size()  && !C.isEmpty()) {
+            if (((currentLength <= this.Minlength) || (this.Minlength == 0)) && (numberRope == (vertexNumber-3) )) {
                 this.Minlength = currentLength;
                 this.ropeList = C;
+                System.out.println(currentLength);
+                System.out.println(C.toString());
+                System.out.println(numberRope);
             }
+        }
+        else {
+            for (int i = 0; i < vertexNumber; i++) {
+                if (p.validateRope(si, i)) {
+                    newRope = new Rope(dotMap.get(si), dotMap.get(i));
+                    addition = newRope.length() + currentLength;
+                    newC.add(newRope);
+                    System.out.println(newC.toString() + ":" + addition);
+                    if ((addition <= this.Minlength) || (this.Minlength == 0)) {
+                        triangulationMinAux(newC,(si+1), addition,(numberRope+1));
+                    }
+                    newC = new ArrayList<>(C);
+                }
+            }
+            triangulationMinAux(C, (si + 1), currentLength, numberRope);
+
 
         }
+
 
     }
 
