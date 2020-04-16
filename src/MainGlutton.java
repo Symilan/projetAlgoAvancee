@@ -115,7 +115,7 @@ public class MainGlutton {
         {
             totalCost+=addRope();
         }
-        System.out.println("Longueur totale :"+totalCost);
+        System.out.println("Longueur totale : "+totalCost);
     }
 
     @Override
