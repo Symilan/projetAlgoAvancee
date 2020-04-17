@@ -11,6 +11,18 @@ public class MainGlutton {
     //polygone sur lequel on va travailler
     private Polygon polygon;
 
+    public static void main(String[] args) {
+        Test test = new Test();
+        Polygon polygon = test.polygon1();
+        //Polygon polygon = test.polygon2();
+        //Polygon polygon = test.polygon3();
+        //Polygon polygon = test.polygon4();
+        //Polygon polygon = test.polygon5();
+        MainGlutton mainGlutton = new MainGlutton(polygon);
+        mainGlutton.gluttony();
+        Drawing.draw(polygon);
+    }
+
     /**
      * Constructeur qui récupère le polygone dont il extrait les sommets qu'il met dans remainingVertex
      * @param polygon
@@ -124,21 +136,5 @@ public class MainGlutton {
                 "remainingVertex=" + remainingVertex +
                 ", polygon=" + polygon +
                 '}';
-    }
-
-    public static void main(String[] args) {
-        Polygon polygon=new Polygon();
-        try {
-            polygon.addDot(0,0);
-            polygon.addDot(1,0);
-            polygon.addDot(2,1);
-            polygon.addDot(1,2);
-            polygon.addDot(0,2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        MainGlutton mainGlutton = new MainGlutton(polygon);
-        mainGlutton.gluttony();
-        Drawing.draw(polygon);
     }
 }

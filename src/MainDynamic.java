@@ -9,16 +9,12 @@ public class MainDynamic {
         final double MAX = Double.MAX_VALUE;
 
         //On crée le polygone que l'on va étudier et récupère son nombre de sommets
-        Polygon polygon = new Polygon();
-        try {
-            polygon.addDot(0,0);
-            polygon.addDot(1,0);
-            polygon.addDot(2,1);
-            polygon.addDot(1,2);
-            polygon.addDot(0,2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Test test = new Test();
+        Polygon polygon = test.polygon1();
+        //Polygon polygon = test.polygon2();
+        //Polygon polygon = test.polygon3();
+        //Polygon polygon = test.polygon4();
+        //Polygon polygon = test.polygon5();
         int n = polygon.getVertexNumber();
 
         //tableCost[i][j] contiendra le poid d'une triangulation entre i et j (c'est à dire la longueure de ses côtés)
