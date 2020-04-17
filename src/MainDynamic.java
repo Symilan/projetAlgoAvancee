@@ -10,9 +10,9 @@ public class MainDynamic {
 
         //On crée le polygone que l'on va étudier et récupère son nombre de sommets
         Test test = new Test();
-        Polygon polygon = test.polygon1();
+        //Polygon polygon = test.polygon1();
         //Polygon polygon = test.polygon2();
-        //Polygon polygon = test.polygon3();
+        Polygon polygon = test.polygon3();
         //Polygon polygon = test.polygon4();
         //Polygon polygon = test.polygon5();
         int n = polygon.getVertexNumber();
@@ -60,7 +60,6 @@ public class MainDynamic {
                         if (tableCost[startDot][endDot]>cost)
                         {
                             tableCost[startDot][endDot] = cost;
-                            System.out.println("Assignation");
                             choosenSummit=interDot;
                         }
                     }
@@ -68,7 +67,7 @@ public class MainDynamic {
                 }
             }
         }
-        //récupération de la sommet de la longueur des côtés des triangles pour en extraire le bon résultat (la longueur totale des cordes)
+        //récupération de la longueur des côtés des triangles pour en extraire le bon résultat (la longueur totale des cordes)
         double totalLength = tableCost[0][n-1];
         double perim = polygon.length(n-1,0);
         for (int i=0 ; i<n-1 ; i++)
@@ -78,18 +77,6 @@ public class MainDynamic {
         double res = totalLength-perim;
         res/=2;
         System.out.println("Longueur de la triangulation minimale : "+res);
-        for (int i = 0 ; i<n ; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                    System.out.print("i = "+i);
-                    System.out.print(", j = "+j);
-                    System.out.println(", t = "+tableTrig[i][j]);
-                    /*polygon.addRope(i,tableTrig[i][j]);
-                    polygon.addRope(j,tableTrig[i][j]);
-                    polygon.addRope(i,j);*/
-            }
-        }
         //Dessin du polygone
        Drawing.draw(polygon);
     }

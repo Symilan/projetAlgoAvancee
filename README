@@ -1,4 +1,4 @@
-Afin de pouvoir lancer les différents main que l'on a créé il faut télécharger la library Draw
+Afin de pouvoir lancer les différents main que l'on a créé il faut télécharger le librarie JFreeChart
 à l'aide du lien maven suivant : org.jfree:jfreechart:1.0.19
 
 Ensuite il y a 3 main différents pour les 3 méthodes dévelopées :
@@ -6,5 +6,5 @@ Ensuite il y a 3 main différents pour les 3 méthodes dévelopées :
     -MainGlutton : Algorithme Glouton
     -MainSuccessive : Essais Successifs
 
-Dans la classe test vous pouvez trouver un enssemble de méthodes qui donnent divers polygones à tester dans les main.
-Il suffit d'enlever les // du polynome que vous voulez tester dans le main choisi
+Dans la classe Test vous pouvez trouver un ensemble de méthodes qui donnent divers polygones à tester dans les mains.
+Il suffit d'enlever les // du polygone que vous voulez tester dans le main choisi

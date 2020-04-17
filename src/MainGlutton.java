@@ -1,8 +1,8 @@
 import model.Dot;
 import model.Polygon;
+import model.Rope;
 import visual.Drawing;
 
-import java.sql.SQLInput;
 import java.util.ArrayList;
 
 public class MainGlutton {
@@ -13,9 +13,9 @@ public class MainGlutton {
 
     public static void main(String[] args) {
         Test test = new Test();
-        Polygon polygon = test.polygon1();
+        //Polygon polygon = test.polygon1();
         //Polygon polygon = test.polygon2();
-        //Polygon polygon = test.polygon3();
+        Polygon polygon = test.polygon3();
         //Polygon polygon = test.polygon4();
         //Polygon polygon = test.polygon5();
         MainGlutton mainGlutton = new MainGlutton(polygon);
@@ -96,6 +96,7 @@ public class MainGlutton {
     {
         double actionCost=ropeLenghtFrom(remainingVertex.get(0));
         int vertexMemo=remainingVertex.get(0);
+        //boucle parcourant le polygone pour trouver la corde extérieure la plus courte
         for (int dotId : remainingVertex)
         {
             double length = ropeLenghtFrom(dotId);
@@ -105,8 +106,11 @@ public class MainGlutton {
                 vertexMemo=dotId;
             }
         }
-        polygon.addRope(vertexMemo,getFollowingRemainingVertex(vertexMemo));
-        remainingVertex.remove(Integer.valueOf(getDirectFollowingRemainingVertex(vertexMemo)));
+        //ajout de la corde extérieure la plus courte
+        polygon.getRopeList().add(new Rope(polygon.getDotMap().get(vertexMemo),polygon.getDotMap().get(getFollowingRemainingVertex(vertexMemo))));
+        int indexToRemove = remainingVertex.indexOf(getDirectFollowingRemainingVertex(vertexMemo));
+        remainingVertex.remove(indexToRemove);
+        //renvoit du coup de l'ajout de cette corde
         return actionCost;
     }
 
@@ -123,8 +127,10 @@ public class MainGlutton {
             System.exit(1);
         }
 
+        //boucle générant les n-3 cordes dans un polygone
         for (int iterate=0 ; iterate < polygon.getVertexNumber()-3 ; iterate++)
         {
+            //addition du cout de l'ajout de la corde ajoutée à l'étape iterate à totalCost
             totalCost+=addRope();
         }
         System.out.println("Longueur totale : "+totalCost);

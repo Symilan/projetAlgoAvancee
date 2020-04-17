@@ -15,7 +15,6 @@ import org.jfree.ui.Layer;
 import org.jfree.ui.RefineryUtilities;
 
 import javax.swing.*;
-import java.awt.Stroke;
 import java.awt.Color;
 import java.util.ArrayList;
 
